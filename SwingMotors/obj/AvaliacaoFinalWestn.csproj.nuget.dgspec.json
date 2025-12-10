@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ogabr\\Downloads\\AvaliacaoFinalWestn-20251205T025553Z-3-001\\AvaliacaoFinalWestn\\AvaliacaoFinalWestn.csproj": {}
+    "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\AvaliacaoFinalWestn.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ogabr\\Downloads\\AvaliacaoFinalWestn-20251205T025553Z-3-001\\AvaliacaoFinalWestn\\AvaliacaoFinalWestn.csproj": {
+    "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\AvaliacaoFinalWestn.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ogabr\\Downloads\\AvaliacaoFinalWestn-20251205T025553Z-3-001\\AvaliacaoFinalWestn\\AvaliacaoFinalWestn.csproj",
+        "projectUniqueName": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\AvaliacaoFinalWestn.csproj",
         "projectName": "AvaliacaoFinalWestn",
-        "projectPath": "C:\\Users\\ogabr\\Downloads\\AvaliacaoFinalWestn-20251205T025553Z-3-001\\AvaliacaoFinalWestn\\AvaliacaoFinalWestn.csproj",
+        "projectPath": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\AvaliacaoFinalWestn.csproj",
         "packagesPath": "C:\\Users\\ogabr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ogabr\\Downloads\\AvaliacaoFinalWestn-20251205T025553Z-3-001\\AvaliacaoFinalWestn\\obj\\",
+        "outputPath": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ogabr\\AppData\\Roaming\\NuGet\\NuGet.Config"
