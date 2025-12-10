@@ -35,7 +35,7 @@ A aplicação está disponível no endereço mascarado (utilize o QR abaixo para
 
 ```markdown
 
-![QR Code](./wwwroot/IMG/qrSwingMotors.png)
+![QR Code](./SwingMotors/wwwroot/IMG/qrSwingMotors.png)
 
 ```
 
