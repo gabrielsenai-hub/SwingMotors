@@ -1,0 +1,103 @@
+@using AvaliacaoFinalWestn.Models.ViewModels
+@model CarroCompradoVm
+@{
+    ViewData["Title"] = "Meu" + Model.Nome;
+}
+
+<div class="container-sm p-lg-5 mt-4 pe-3 custom-bg border border-danger">
+    <p class="fs-1 text-white">@Model.Nome</p>
+
+    <div class="row g-4 justify-content-center">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide w-75 h-75" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                @if (Model.Fotos != null && Model.Fotos.Any())
+                {
+                    for (int i = 0; i < Model.Fotos.Count; i++)
+                    {
+                        var fotoUrl = Model.Fotos[i];
+
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <img src="@fotoUrl" class="d-block w-100" alt="foto">
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Nenhuma foto encontrada!</p>
+                }
+            </div>
+
+            <div class="m-4 d-flex justify-content-center">
+                @if (Model.Fotos != null && Model.Fotos.Any())
+                {
+                    for (int i = 0; i < Model.Fotos.Count; i++)
+                    {
+                        var fotoUrl = Model.Fotos[i];
+
+                        <button type="button" 
+                                data-bs-target="#carouselExampleDark" 
+                                data-bs-slide-to="@i"
+                                class="@(i == 0 ? "active" : "") p-0" 
+                                aria-label="Slide @i">
+
+                            <img src="@fotoUrl" class="d-block" width="100" height="100">
+                        </button>
+                    }
+                }
+            </div>
+
+            <button class="carousel-control-prev h-75" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next h-75" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container p-4">
+        <div class="container w-75">
+
+            <table class="table text-white">
+                <thead>
+                    <tr>
+                        <th scope="col">Informação</th>
+                        <th scope="col">Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Fabricante</th>
+                        <td>@Model.Fabricante</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Data da Compra</th>
+                        <td>@Model.DataCompra.ToString("dd/MM/yyyy")</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Preço Pago</th>
+                        <td>@Model.PrecoPago</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="fs-1 text-white">Descrição</p>
+            <p class="lh-base text-white">
+                Você adquiriu um <b>@Model.Nome</b>, fabricado pela renomada <b>@Model.Fabricante</b>.
+                <br><br>
+                Esta unidade foi comprada em <b>@Model.DataCompra.ToString("dd/MM/yyyy")</b> por 
+                <b>@Model.PrecoPago</b>.
+                <br><br>
+                Acima estão as fotos registradas deste veículo no momento da aquisição.
+            </p>
+
+        </div>
+    </div>
+
+</div>

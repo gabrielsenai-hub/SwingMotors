@@ -1,0 +1,240 @@
+@model AvaliacaoFinalWestn.Models.EditarUsuarioViewModel
+@{
+    ViewData["Title"] = "Configuracoes";
+}
+
+@if (TempData["ConfigSuccess"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["ConfigSuccess"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["ConfigAlert"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        @TempData["ConfigAlert"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="container-sm p-lg-5 mt-4 pe-3  custom-bg border border-danger  ">
+
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-header bg-dark text-white">
+                        <h3 class="text-center text-white my-4">Configurações</h3>
+                    </div>
+                    <div class="card-body p-4 p-md-5 bg-dark border-dark text-white">
+                        <form asp-controller="Usuario" asp-action="Editar" method="post">
+
+                            <h5 class="mb-3 text-primary">Dados Pessoais e de Acesso</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <input asp-for="Id" type="hidden"
+                                        class="form-control bg-dark border-dark text-white" id="inputId" required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="inputNome" class="form-label">Nome Completo</label>
+                                    <input asp-for="Nome" value="@Model.Nome" type="text" class="form-control"
+                                        id="inputNome" name="Nome" required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="inputCpf" class="form-label">CPF</label>
+                                    <input asp-for="Cpf" type="text" value="@Model.Cpf" class="form-control"
+                                        id="inputCpf" name="Cpf" placeholder="000.000.000-00" required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="inputEmail" class="form-label">E-mail</label>
+                                    <input asp-for="Email" type="email" value="@Model.Email" class="form-control"
+                                        id="inputEmail" name="Email" placeholder="seuemail@exemplo.com" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="inputSenhaAntiga" class="form-label">Senha Antiga</label>
+                                    <input type="password" class="form-control" id="inputSenhaAntiga" name="Senha"
+                                        minlength="6" asp-for="SenhaAtual">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="inputTelefone" class="form-label">Telefone</label>
+                                    <input asp-for="Telefone" type="tel" value="@Model.Telefone" class="form-control"
+                                        id="inputTelefone" name="Telefone" placeholder="(00) 00000-0000" required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="inputSenha" class="form-label">Nova Senha</label>
+                                    <input onblur="validarsenha(); forcasenha(this.value)" type="password"
+                                        class="form-control" id="inputSenha" name="Senha" minlength="6">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <p id="FortificacaoSenha" class="alert-danger"></p>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="inputConfirmaSenha" class="form-label">Confirmação de Senha</label>
+                                    <input asp-for="SenhaNova" onblur="validarsenha()" type="password"
+                                        class="form-control" id="inputConfirmaSenha" name="ConfirmaSenha">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <p id="validarTxt" class="alert-danger"></p>
+                                </div>
+
+
+                            </div>
+
+                            <hr class="my-4">
+
+                            <h5 class="mb-3 text-primary">Endereço</h5>
+                            <div class="row mb-3">
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="inputCep" class="form-label">CEP</label>
+                                    <input asp-for="Cep" value="@Model.Cep" maxlength="9" onblur="buscacep(this.value)"
+                                        type="text" class="form-control" id="inputCep" name="Cep"
+                                        placeholder="00000-000" required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="inputRua" class="form-label">Rua/Avenida</label>
+                                    <input asp-for="Rua" type="text" value="@Model.Rua" class="form-control"
+                                        id="inputRua" name="Rua" required>
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="inputNumero" class="form-label">Número</label>
+                                    <input asp-for="Numero" value="@Model.Numero" type="text" class="form-control"
+                                        id="inputNumero" name="Numero" required>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <label for="inputBairro" class="form-label">Bairro</label>
+                                    <input asp-for="Bairro" value="@Model.Bairro" type="text" class="form-control"
+                                        id="inputBairro" name="Bairro" required>
+                                </div>
+
+                                <div class="col-md-5 mb-3">
+                                    <label for="inputLocalidade" class="form-label">Cidade</label>
+                                    <input asp-for="Cidade" value="@Model.Cidade" type="text" class="form-control"
+                                        id="inputCidade" name="Cidade" required>
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="inputEstado" class="form-label">Estado</label>
+                                    <input asp-for="Estado" value="@Model.Estado" type="text" class="form-control"
+                                        id="inputEstado" name="Estado" required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="d-grid mt-4" id="btn">
+                                <button type="submit" class="btn btn-primary btn-lg">Concluir edição</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="card-footer text-center py-3 bg-dark">
+                        <form method="post" asp-controller="Usuario" asp-action="Excluir">
+                            <button type="submit" class="btn btn-danger">Encerrar conta</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function validarsenha() {
+        const senhaR = document.getElementById('inputConfirmaSenha').value;
+        const senha = document.getElementById('inputSenha').value;
+        const validarTxt = document.getElementById("validarTxt");
+        if (senhaR != null) {
+            if (senha !== senhaR) {
+                validarTxt.style.display = "block";
+                validarTxt.innerHTML = "As senhas não coincidem";
+                document.querySelector("#btn").classList.remove("fade-in");
+                document.querySelector("#btn").classList.add("fade-out");
+                document.querySelector("#btn").style.display = "none"
+
+            } else {
+
+                document.querySelector("#btn").classList.remove("fade-out");
+                document.querySelector("#btn").classList.add("fade-in");
+                validarTxt.style.display = "none";
+            }
+        }
+
+    }
+
+    function forcasenha(senha) {
+        const txtForca = document.getElementById("FortificacaoSenha");
+        const btn = document.querySelector("#btn");
+
+        const hasAlfa = /[A-Za-z0-9]/.test(senha);
+        const hasNonAlfa = /[^A-Za-z0-9]/.test(senha);
+
+        if (senha.length < 6) {
+            btn.classList.remove("fade-in");
+            btn.classList.add("fade-out");
+            btn.style.display = "none";
+
+            txtForca.style.display = "block";
+            txtForca.innerHTML = "A senha deve ter pelo menos 6 caracteres!";
+        }
+        else if (!hasAlfa) {
+            btn.classList.remove("fade-in");
+            btn.classList.add("fade-out");
+            btn.style.display = "none";
+
+            txtForca.style.display = "block";
+            txtForca.innerHTML = "A senha deve conter pelo menos um caractere alfanumérico (letra ou número)!";
+        }
+        else if (!hasNonAlfa) {
+            btn.classList.remove("fade-in");
+            btn.classList.add("fade-out");
+            btn.style.display = "none";
+
+            txtForca.style.display = "block";
+            txtForca.innerHTML = "A senha deve conter pelo menos um caractere especial!";
+        }
+        else {
+            btn.style.display = "block";
+            btn.classList.remove("fade-out");
+            btn.classList.add("fade-in");
+
+            txtForca.style.display = "none";
+        }
+    }
+
+    function buscacep(cep) {
+        cep = cep.replace(/\D/g, '');
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => showData(data));
+    }
+
+    function showData(result) {
+
+        // Se quiser preencher automaticamente os inputs com IDs iguais às chaves do JSON:
+        for (const campo in result) {
+            console.log(campo);
+            const input = document.querySelector(`#input${campo.charAt(0).toUpperCase()}${campo.slice(1)}`);
+            if (input) input.value = result[campo];
+        }
+
+        // Campos que você quer preencher manualmente:
+        const cidade = document.getElementById("inputCidade");
+        const rua = document.getElementById("inputRua");
+        if (rua) rua.value = result.logradouro || "";
+        if (cidade) cidade.value = result.localidade || "";
+    }
+</script>

@@ -1,0 +1,218 @@
+﻿@model CarroDetalheVm
+@{
+    ViewData["Title"] = "Finalizar compra";
+    // passa o preço em formato invariant para o JS ler como número
+    var precoCarroStr = Model.Carro.Preco.ToString("F2", System.Globalization.CultureInfo.InvariantCulture);
+}
+<div class="container-sm p-lg-5 mt-4 pe-3 custom-bg border border-danger ">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <h2 class="mb-4 text-primary">Finalizar Compra</h2>
+                <div class="row">
+                    <div class="col-lg-5 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0">Veículo Selecionado</h5>
+                            </div>
+                            @{
+                                var img = Model.Fotos[0].Id;
+                            }
+                            <div class="card-body p-3 text-center bg-dark text-white">
+                                <img src="@Url.Action("Foto", "Carro", new { id = img })"
+                                    class="img-fluid veiculo-img rounded mb-3" alt="Carro Esportivo Vermelho">
+                                <h4 class="card-title">@Model.Carro.Nome</h4>
+                                <p class="text-muted">@Model.Carro.Fabricante</p>
+                                <p class="h5 text-success">@Model.Carro.Preco.ToString("C", new
+                                                                        System.Globalization.CultureInfo("pt-BR"))
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7 mb-4">
+                        <div class="card shadow-sm p-4 bg-dark text-white">
+                            <form method="post" asp-controller="Carro" asp-action="Finalizar">
+                                <input type="hidden" name="id" value="@Model.Carro.Id" />
+                                <h5 class="mb-3 text-primary">1. Calcular Frete</h5>
+
+                                <div class="row g-3 mb-4">
+                                    <div class="col-sm-8">
+                                        <label for="inputCep" class="form-label">CEP de Entrega</label>
+                                        <!-- permite traço, maxlength 9 (00000-000) -->
+                                        <input type="text" maxlength="9" class="form-control" id="inputCep"
+                                            placeholder="00000-000" required>
+                                    </div>
+                                    <div class="col-sm-4 d-flex align-items-end">
+                                        <button type="button" class="btn btn-outline-primary w-100"
+                                            onclick="mostrarFrete()">Calcular
+                                        </button>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div id="resultadoFrete" class="alert alert-info py-2 mb-0" role="alert">
+                                            <!-- fretes vão aparecer aqui -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <h5 class="mb-3 text-primary">2. Forma de Pagamento</h5>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="formaPagamento" id="pagBoleto"
+                                        value="Boleto" required>
+                                    <label class="form-check-label" for="pagBoleto">
+                                        Boleto Bancário (10% de desconto no valor do veículo)
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="radio" name="formaPagamento" id="pagCartao"
+                                        value="Cartao" required>
+                                    <label class="form-check-label" for="pagCartao">
+                                        Cartão de Crédito (em até 12x sem juros)
+                                    </label>
+                                </div>
+
+                                <div id="detalhesCartao" style="display: none;"
+                                    class="p-3 border rounded mb-4 bg-light">
+                                    <p class="small text-muted mb-2">Detalhes do Cartão de Crédito:</p>
+                                    <input type="number" maxlength="16" minlength="16" class="form-control mb-2" placeholder="Número do Cartão"
+                                        >
+                                    <input type="text" class="form-control mb-2" placeholder="Nome Impresso no Cartão"
+                                        >
+                                </div>
+
+                                <hr class="my-4">
+
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="text-dark mb-0">TOTAL GERAL:</h4>
+                                    <input type="hidden" asp-for="PrecoPago" id="totalPreco" class="text-danger mb-0"/>
+                                    <h3 id="totalPrecoView" class="text-danger mb-0"></h3>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-success btn-lg">Finalizar Compra</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* precoCarroStr vem do Razor com ponto decimal invariant */
+    let precoCarro = parseFloat("@precoCarroStr");
+    if (Number.isNaN(precoCarro)) precoCarro = 0;
+
+    let freteSelecionado = 0;
+
+    // Cálculo fictício de frete baseado em "distância" entre prefixos do CEP
+    function calcularFrete(cepOrigem, cepDestino) {
+        // espera strings com só números (8 dígitos)
+        const regOrigem = parseInt(cepOrigem.substring(0, 2));
+        const regDestino = parseInt(cepDestino.substring(0, 2));
+        const distancia = Math.max(Math.abs(regOrigem - regDestino), 1); // sempre >=1
+
+        const precoPac = 15 + distancia * 2;
+        const prazoPac = 3 + distancia;
+
+        const precoSedex = 25 + distancia * 3;
+        const prazoSedex = 1 + Math.floor(distancia / 2);
+
+        return [
+            { servico: "PAC", valor: precoPac, prazo: prazoPac },
+            { servico: "SEDEX", valor: precoSedex, prazo: prazoSedex }
+        ];
+    }
+
+    // pega valor do input, remove tudo que não for dígito e retorna string com 8 dígitos ou empty
+    function pegarCepSomenteNumeros() {
+        const raw = document.getElementById("inputCep").value || "";
+        const numeros = raw.replace(/\D/g, ""); // remove hífen e qualquer não número
+        return numeros;
+    }
+
+    function mostrarFrete() {
+        const cepDestino = pegarCepSomenteNumeros();
+        const resultadoDiv = document.getElementById("resultadoFrete");
+
+        if (!cepDestino || cepDestino.length !== 8) {
+            resultadoDiv.innerHTML = "Insira um CEP válido (8 dígitos). Ex: 12345-678";
+            freteSelecionado = 0;
+            atualizarTotal();
+            return;
+        }
+
+        const fretes = calcularFrete("42801170", cepDestino); // origem fixa
+        let html = "";
+        fretes.forEach((f, i) => {
+            // value com ponto decimal; usamos toFixed(2) apenas para exibir
+            html += `<div class="form-check">
+                    <input class="form-check-input" type="radio" name="frete" id="frete_${i}" value="${f.valor}" ${i === 0 ? 'checked' : ''} onchange="selecionarFrete(this.value)">
+                    <label class="form-check-label" for="frete_${i}">
+                        ${f.servico} - R$ ${f.valor.toFixed(2)} - Prazo: ${f.prazo} dias
+                    </label>
+                 </div>`;
+            if (i === 0) freteSelecionado = f.valor;
+        });
+
+        resultadoDiv.innerHTML = html;
+        atualizarTotal();
+    }
+
+    function selecionarFrete(valor) {
+        freteSelecionado = parseFloat(valor) || 0;
+        atualizarTotal();
+    }
+
+    function atualizarTotal() {
+        // desconto do boleto: 10% apenas sobre o valor do VEÍCULO
+        const isBoleto = document.getElementById("pagBoleto").checked;
+        const valorVeiculo = isBoleto ? (precoCarro * 0.9) : precoCarro;
+
+        const total = valorVeiculo + (freteSelecionado || 0);
+
+        document.getElementById("totalPreco").value =
+            total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        document.getElementById("totalPrecoView").innerHTML =
+            total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    }
+
+    // Liga os listeners quando DOM estiver pronto
+    document.addEventListener("DOMContentLoaded", () => {
+        // inicializa total
+        atualizarTotal();
+
+        // mostra/oculta campos do cartão e atualiza total quando muda forma de pagamento
+        const rbBoleto = document.getElementById("pagBoleto");
+        const rbCartao = document.getElementById("pagCartao");
+        const detalhesCartao = document.getElementById("detalhesCartao");
+
+        if (rbCartao && rbBoleto) {
+            rbCartao.addEventListener("change", () => {
+                detalhesCartao.style.display = "block";
+                atualizarTotal();
+            });
+            rbBoleto.addEventListener("change", () => {
+                detalhesCartao.style.display = "none";
+                atualizarTotal();
+            });
+        }
+
+        // possibilitar Enter no campo CEP para calcular também
+        const inputCep = document.getElementById("inputCep");
+        inputCep.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                mostrarFrete();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image" href="~/IMG/Icone.png">
+    <title>@ViewData["Title"] - SwingMotors</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Animations.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/IMG/Logo.png"
+                        alt="Logo da Swing Motors" width="150" height="75"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Carro"
+                                asp-action="Colecao">Veículos</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home"
+                                asp-action="Contato">Contato</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Carro"
+                                    asp-action="MeusVeiculos">Meus Veículos</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <form class="d-flex" role="search">
+
+                        <button class="btn btn-success m-2" asp-area="" asp-controller="Home" asp-action="Login"
+                            type="submit">Login
+                        </button>
+                        <button class="btn btn-success m-2" asp-area="" asp-controller="Home" asp-action="Cadastro"
+                            type="submit">Cadastro
+                        </button>
+                    </form>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <form asp-controller="Administracao" asp-action="CadastroVeiculo" method="post">
+                            <button class="btn btn-success m-2" type="submit">Adicionar Veiculo
+                            </button>
+                        </form>
+                    }
+
+                    <a asp-action="Configuracoes" asp-controller="Usuario" class="img-fluid" id="config">
+                        <img src="~/IMG/settings-icon.png" alt="settings">
+                    </a>
+                }
+
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid p-0">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="bg-dark text-center py-3 border-top border-secondary text-white">
+        <p class="small mb-0">&copy; 2025 Swing Motors. Todos os direitos reservados. | <a
+                class="text-white-50">Política de Privacidade</a></p>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

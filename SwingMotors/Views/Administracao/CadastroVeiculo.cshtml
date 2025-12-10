@@ -1,0 +1,116 @@
+﻿@model AvaliacaoFinalWestn.Models.RegistroCarroViewModel
+@{
+    ViewData["Title"] = "Adicionar Veiculo";
+}
+@if (TempData["ErroCarro"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErroCarro"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="container-sm p-lg-5 mt-4 pe-3  custom-bg border border-danger ">
+    <p class="fs-3 text-white">Adicionar novo veiculo</p>
+    <form class="row g-3 text-white" enctype="multipart/form-data" asp-controller="Carro" asp-action="Criar"
+        method="post">
+        <div class="col-md-6">
+            <label for="inputNomeVeiculo" class="form-label">Modelo</label>
+            <input asp-for="Nome" type="text" class="form-control bg-dark border-dark text-white" id="inputNomeVeiculo"
+                required>
+        </div>
+        <div class="col-md-3">
+            <label for="inputFabricanteVeiculo" class="form-label">Fabricante</label>
+            <select asp-for="Fabricante" class="form-control bg-dark border-dark text-white" id="inputFabricanteVeiculo"
+                required>
+
+                <option value="">Selecione...</option>
+                <option value="Aston-Martin">Aston Martin</option>
+                <option value="Bentley">Bentley</option>
+                <option value="Bugatti">Bugatti</option>
+                <option value="BMW">BMW</option>
+                <option value="Ferrari">Ferrari</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Maserati">Maseratti</option>
+                <option value="McLaren">McLaren</option>
+                <option value="Porsche">Porsche</option>
+
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="inputQuantidadeVeiculo" class="form-label ">Quantidade</label>
+            <input asp-for="Quantidade" type="number" class="form-control bg-dark border-dark text-white"
+                id="inputQuantidadeVeiculo" max="20" required>
+        </div>
+        <div class="col-md-3">
+            <label for="inputMotorVeiculo" class="form-label">Motor</label>
+            <input asp-for="Motor" type="text" class="form-control bg-dark border-dark text-white"
+                id="inputMotorVeiculo" required>
+        </div>
+        <div class="col-md-3">
+            <label for="inputPotenciaVeiculo" class="form-label">Potência (em cavalos)</label>
+            <input asp-for="Potencia" type="number" class="form-control bg-dark border-dark text-white"
+                id="inputPotenciaVeiculo" required>
+        </div>
+        <div class="col-md-3">
+            <label for="inputTransmissaoVeiculo" class="form-label">Transmissão</label>
+            <input asp-for="Transmissao" placeholder="ex: '3.0:1'" type="text" required
+                class="form-control bg-dark border-dark text-white" id="inputTransmissaoVeiculo">
+        </div>
+        <div class="col-md-3">
+            <label for="inputTracaoVeiculo" class="form-label">Tração</label>
+            <input asp-for="Tracao" type="text" required class="form-control bg-dark border-dark text-white"
+                id="inputTracaoVeiculo">
+        </div>
+        <div class="col-md-3" id="km">
+            <label for="inputZeroCemVeiculo" class="form-label">0-100 Km/h (em quantos seguntos se faz 100km)</label>
+            <input asp-for="ZeroaAcem" type="number" required class="form-control bg-dark border-dark text-white"
+                id="inputZeroCemVeiculo">
+        </div>
+        <div class="col-md-3">
+            <label for="inputVelocidadeMaxVeiculo" class="form-label">Velocidade Máxima (em km/h)</label>
+            <input asp-for="VelocidadeMax" type="number" required class="form-control bg-dark border-dark text-white"
+                id="inputVelocidadeMaxVeiculo">
+        </div>
+        <div class="col-md-3">
+            <label for="inputTorque" class="form-label">Torque (em Nm)</label>
+            <input asp-for="Torque" type="number" required class="form-control bg-dark border-dark text-white"
+                id="inputTorque">
+        </div>
+        <div class="mb-3">
+            <label for="arquivosImagens" class="form-label">Adicione Imagens do Veiculo</label>
+            <input asp-for="ArquivosImagens" type="file" class="form-control bg-dark border-dark text-white"
+                id="arquivosImagens" name="ArquivosImagens" accept="image/*" multiple/>
+                <p id="avisoMax" class="alert-danger p"></p>
+                
+        </div>
+        <div class="mb-3">
+            <label for="Preco" class="form-label">Preço</label>
+            <input asp-for="Preco" type="number" class="form-control bg-dark border-dark text-white" id="Preco"
+                name="Preco" required>
+        </div>
+
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Adicionar</button>
+        </div>
+    </form>
+</div>
+<style>
+#km{
+    width: max-content
+}
+</style>
+<script>
+document.getElementById("arquivosImagens").addEventListener("change", function(){
+    const max = 5;
+    const aviso = document.getElementById("avisoMax");
+    if (this.files.length > max){
+        aviso.innerHTML = `Você só pode enviar até ${max} imagens!`
+        this.value = "";
+    }
+    else{
+        aviso.innerHTML = "";
+    }
+})
+</script>

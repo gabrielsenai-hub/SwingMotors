@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+<header class="hero-section">
+    <div class="container text-white ">
+        <h1 class="display-3 fw-bold mb-3">EXPERIMENTE A ELITE AUTOMOTIVA.</h1>
+        <p class="lead mb-4">Seu destino exclusivo para os mais raros e potentes esportivos do mundo.</p>
+        <a asp-controller="Carro" asp-action="Colecao" class="btn btn-primary btn-lg px-5 me-3">Ver Coleção</a>
+        <a asp-area="" asp-controller="Home" asp-action="Contato" class="btn btn-outline-light btn-lg px-5">Fale
+            Conosco</a>
+    </div>
+</header>
+
+<section id="sobre" class="py-5  text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-5 mb-4 text-white">Nossa Responsabilidade</h2>
+                <p class="lead">Na Swing Motors, não vendemos apenas carros, entregamos uma experiência de propriedade
+                    incomparável. Nosso compromisso é com a qualidade irrepreensível, a transparência total e o
+                    atendimento personalizado que você, como cliente de alta classe, merece.</p>
+                <p>Prezamos pela excelência em cada detalhe, desde a curadoria dos veículos mais exclusivos do mercado
+                    até o suporte pós-venda que garante sua tranquilidade. Sua satisfação e confiança são o nosso maior
+                    ativo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="servicos" class="py-5 text-white bg-dark">
+    <div class="container">
+        <h2 class="text-center mb-5 text-white">Serviços de Elite</h2>
+        <div class="row text-center">
+
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-headset fa-3x mb-3 text-primary-custom"></i>
+                <h4 class="fw-bold">Atendimento 24h</h4>
+                <p class="text-muted">Suporte dedicado e disponível a qualquer hora, garantindo que sua experiência
+                    nunca seja interrompida.</p>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-wrench fa-3x mb-3 text-primary-custom"></i>
+                <h4 class="fw-bold">Manutenção Especializada</h4>
+                <p class="text-muted">Serviço de manutenção e <strong>detailing</strong> realizado por técnicos certificados nas marcas
+                    de luxo.</p>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <i class="fas fa-phone-alt fa-3x mb-3 text-primary-custom"></i>
+                <h4 class="fw-bold">Consultoria Exclusiva</h4>
+                <p class="text-muted">Entre em contato para agendar uma consultoria personalizada e encontrar o veículo
+                    perfeito.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="marcas" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 text-white">Nossas Marcas de Prestígio</h2>
+
+        <div id="marcasCarrossel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Ferrari-logo.png"
+                                                            class="logo-parceira" alt="Logo Ferrari"></div>
+                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Lamborghini-logo.png"
+                                                            class="logo-parceira" alt="Logo Lamborghini"></div>
+                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Porsche-logo.png"
+                                                            class="logo-parceira" alt="Logo Porsche"></div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Aston-Martin-logo.png"
+                                                            class="logo-parceira" alt="Logo Aston Martin"></div>
+                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/McLaren-logo.png"
+                                                            class="logo-parceira" alt="Logo McLaren"></div>
+                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Bugatti-logo.png"
+                                                            class="logo-parceira" alt="Logo Bugatti"></div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Maserati-logo.png"
+                                                            class="logo-parceira" alt="Logo Maserati"></div>
+                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Bentley-logo.png"
+                                                            class="logo-parceira" alt="Logo Bentley"></div>
+                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/BMW-logo.png"
+                                                            class="logo-parceira" alt="Logo BMW"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#marcasCarrossel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#marcasCarrossel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+.btn-primary {
+  background-color: rgb(114, 3, 3);
+  border-color: rgb(114, 3, 3);
+}
+</style>

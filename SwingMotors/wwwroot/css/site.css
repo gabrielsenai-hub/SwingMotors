@@ -1,0 +1,78 @@
+body {
+  background-color: rgb(52, 58, 64);
+}
+
+#config img{
+  width: 90%;
+}
+#config {
+  width: 10vh;
+  max-width: 65px;
+  transition: 0.5s;
+  height: auto;
+}
+#config:hover {
+  transform: translateY(1px);
+  transform: scale(1.1);
+  transform: rotate(45deg);
+  transition: 0.5s;
+}
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+    url(/IMG/banner_text_centralizado_1920x600.png);
+  background-size: cover;
+  background-position: center;
+  height: 55vh; /* Altura do Hero */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Destaque para a cor primária (Seu vermelho escuro para luxo) */
+.text-primary-custom {
+  color: rgb(114, 3, 3) !important;
+}
+
+/* Estilo para as logos das marcas */
+.logo-parceira {
+  height: 60px; /* Altura fixa para as logos no carrossel */
+  /* filter: grayscale(100%) brightness(150%); Deixa as logos em tons de cinza/branco para elegância */
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.logo-parceira:hover {
+  opacity: 1;
+  filter: grayscale(0%); /* Mostra a cor original ao passar o mouse */
+}
+
+.custom-bg {
+  background-color: rgba(0, 0, 0, 0.5); /* preto 50% transparente */
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}

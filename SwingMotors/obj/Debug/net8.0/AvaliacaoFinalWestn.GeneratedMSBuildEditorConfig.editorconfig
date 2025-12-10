@@ -1,0 +1,97 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = AvaliacaoFinalWestn
+build_property.RootNamespace = AvaliacaoFinalWestn
+build_property.ProjectDir = C:\Users\ogabr\Downloads\AvaliacaoFinalWestn-20251205T025553Z-3-001\AvaliacaoFinalWestn\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ogabr\Downloads\AvaliacaoFinalWestn-20251205T025553Z-3-001\AvaliacaoFinalWestn
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Carro/Colecao.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycm9cQ29sZWNhby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Administracao/CadastroVeiculo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYWNhb1xDYWRhc3Ryb1ZlaWN1bG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Administracao/EditarCarro.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYWNhb1xFZGl0YXJDYXJyby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Carro/DetalhesVeiculo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycm9cRGV0YWxoZXNWZWljdWxvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Carro/DetalhesVeiculoComprado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycm9cRGV0YWxoZXNWZWljdWxvQ29tcHJhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Carro/FinalizarCompra.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycm9cRmluYWxpemFyQ29tcHJhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Carro/MeusVeiculos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycm9cTWV1c1ZlaWN1bG9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Home/Cadastro.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYWRhc3Ryby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Home/Contato.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YXRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Usuario/Configuracoes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xDb25maWd1cmFjb2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ogabr/Downloads/AvaliacaoFinalWestn-20251205T025553Z-3-001/AvaliacaoFinalWestn/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-uwl4ocb7x4

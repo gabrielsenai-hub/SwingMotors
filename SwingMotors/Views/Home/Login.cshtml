@@ -1,0 +1,60 @@
+﻿@model AvaliacaoFinalWestn.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+@if (TempData["ErroCadastro"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErroCadastro"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="container-sm p-lg-5 mt-4 pe-3  custom-bg border border-danger  ">
+
+
+    <div class="d-flex align-items-center justify-content-center min-vh-100">
+        <div class="card p-4 form-login shadow-lg bg-dark border-dark text-white">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark  box-shadow ">
+                <div class="container-fluid">
+                    <img src="~/IMG/Logo.png" alt="Logo da Swing Motors" class="w-25">
+                    <form class="d-flex" role="search">
+                        <button class="btn btn-primary m-2" asp-area="" asp-controller="Home" asp-action="Index"
+                            type="submit">Voltar</button>
+                    </form>
+                </div>
+            </nav>
+            <h3 class="card-title text-center mb-4 ">Login</h3>
+
+            <form asp-action="Login" asp-controller="Usuario" method="post">
+
+                <div class="mb-3">
+                    <label for="inputEmail" class="form-label">Usuário (E-mail)</label>
+                    <input asp-for="Email" type="email" class="form-control" id="inputEmail" placeholder="seuemail@exemplo.com"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputSenha" class="form-label">Senha</label>
+                    <input asp-for="Senha" type="password" class="form-control" id="inputSenha" placeholder="********" required>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input asp-for="LembrarMe" type="checkbox" class="form-check-input" id="checkLembrar">
+                    <label class="form-check-label" for="checkLembrar">Lembrar-me</label>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
+                </div>
+
+            </form>
+
+
+            <div class="text-center mt-3">
+                <a asp-area="" asp-controller="Home" asp-action="Cadastro">Cadastre-se</a>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,182 @@
+﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model AvaliacaoFinalWestn.Models.CarroDetalheVm
+@{
+    ViewData["Title"] = "Detalhes do veículo";
+}
+<div class="container-sm p-lg-5 mt-4 pe-3  custom-bg border border-danger ">
+    <p class="fs-1 text-white">@Model.Carro.Nome</p>
+    <div class="row g-4 justify-content-center">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide w-75 h-75" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+                @if (Model.Fotos != null && Model.Fotos.Any())
+                {
+                    @for (int i = 0; i < Model.Fotos.Count; i++)
+                    {
+                        var img = Model.Fotos[i];
+
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <img src="@Url.Action("Foto", "Carro", new { id = img.Id })" class="d-block w-100" alt="foto">
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Nenhuma foto encontrada!</p>
+                }
+            </div>
+
+            <div class="m-4 d-flex justify-content-center">
+                @if (Model.Fotos != null && Model.Fotos.Any())
+                {
+                    for (int i = 0; i < Model.Fotos.Count; i++)
+                    {
+                        var img = Model.Fotos[i];
+
+                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="@i"
+                            class="@(i == 0 ? "active" : "") p-0" aria-label="Slide @i">
+
+                            <img src="@Url.Action("Foto", "Carro", new { id = img.Id })" class="d-block" width="100"
+                                height="100">
+                        </button>
+                    }
+                }
+
+            </div>
+
+            <button class="carousel-control-prev h-75" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next h-75" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+        </div>
+    </div>
+    <div class="container p-4">
+        <div class="container w-75">
+            <table class="table text-white">
+                <thead>
+                    <tr>
+                        <th scope="col">Caracteristica</th>
+                        <th scope="col">Especificações</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Motor</th>
+                        <td>@Model.Carro.Motor</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Potencia</th>
+                        <td>@Model.Carro.Potencia CV</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Torque</th>
+                        <td colspan="2">@Model.Carro.Torque Nm</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Transmissão</th>
+                        <td colspan="2">@Model.Carro.Transmissao</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tração</th>
+                        <td colspan="2">@Model.Carro.Tracao N</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">0-100 km/h</th>
+                        <td colspan="2">@Model.Carro.ZeroaAcem Segundos
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Velocidade Máxima</th>
+                        <td colspan="2">@Model.Carro.VelocidadeMax Km/h
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="fs-1 text-white">Descrição</p>
+            <p class="lh-base text-white"></p>
+            @if(Model.Carro.Quantidade > 0){
+            <p class="lh-base text-white">
+
+                O @Model.Carro.Nome, da renomada @Model.Carro.Fabricante, chega entregando um conjunto impressionante de
+                desempenho e tecnologia. Equipado com um motor @Model.Carro.Motor, ele gera @Model.Carro.Potencia de
+                potência
+                e @Model.Carro.Torque Nm de torque, garantindo respostas rápidas e uma condução empolgante em qualquer
+                situação.
+
+                Do 0 aos 100 km/h, o modelo alcança a marca de @Model.Carro.ZeroaAcem segundos, mostrando que não veio
+                para brincadeira. Sua velocidade máxima chega a @Model.Carro.VelocidadeMax Km/h, permitindo explorar
+                todo o
+                potencial do conjunto mecânico.
+
+                Para completar, o carro traz transmissão de @Model.Carro.Transmissao e tração de @Model.Carro.Tracao N,
+                entregando estabilidade, eficiência e uma dirigibilidade refinada. Atualmente, 
+                 contamos com @Model.Carro.Quantidade
+                unidades disponíveis em estoque.
+
+                Com preço a partir de @Model.Carro.Preco.ToString("C", new System.Globalization.CultureInfo("pt-BR"))
+                , o @Model.Carro.Nome se destaca como uma das melhores opções
+                da categoria para quem busca desempenho, estilo e confiabilidade.
+            </p>
+            }
+            else{
+                            <p class="lh-base text-white">
+
+                O @Model.Carro.Nome, da renomada @Model.Carro.Fabricante, chega entregando um conjunto impressionante de
+                desempenho e tecnologia. Equipado com um motor @Model.Carro.Motor, ele gera @Model.Carro.Potencia de
+                potência
+                e @Model.Carro.Torque Nm de torque, garantindo respostas rápidas e uma condução empolgante em qualquer
+                situação.
+
+                Do 0 aos 100 km/h, o modelo alcança a marca de @Model.Carro.ZeroaAcem segundos, mostrando que não veio
+                para brincadeira. Sua velocidade máxima chega a @Model.Carro.VelocidadeMax Km/h, permitindo explorar
+                todo o
+                potencial do conjunto mecânico.
+
+                Para completar, o carro traz transmissão de @Model.Carro.Transmissao e tração de @Model.Carro.Tracao N,
+                entregando estabilidade, eficiência e uma dirigibilidade refinada. <strong>Atualmente, 
+                 estamos sem
+                unidades disponíveis em estoque.</strong> 
+
+                Com preço a partir de @Model.Carro.Preco.ToString("C", new System.Globalization.CultureInfo("pt-BR"))
+                , o @Model.Carro.Nome se destaca como uma das melhores opções
+                da categoria para quem busca desempenho, estilo e confiabilidade.
+            </p>
+
+            }
+        </div>
+    </div>
+    <div class="d-grid gap-2">
+        @if(Model.Carro.Quantidade > 0){
+
+                <form asp-controller="Carro" class="w-100" asp-action="FinalizarCompra" method="post">
+            <input type="hidden" name="id" value="@Model.Carro.Id" />
+            <button class="btn btn-primary w-100" type="submit">Adiquira-já</button>
+        </form>
+        }
+        else{
+            <div class="w-100 btn btn-dark">
+            Esgotado!
+            </div>
+        }
+        @if (User.IsInRole("Admin"))
+        {
+            <form asp-controller="Administracao" asp-action="EditarCarro" method="post" class="w-100">
+                <input type="hidden" name="id" value="@Model.Carro.Id" />
+                <button class="btn btn-light w-100" type="submit">Editar</button>
+            </form>
+            <form asp-controller="Administracao" asp-action="DeletarCarro" method="post" class="w-100">
+                <input type="hidden" name="id" value="@Model.Carro.Id" />
+                <button class="btn btn-danger" type="submit">Excluir</button>
+            </form>
+        }
+    </div>
+
+</div>
