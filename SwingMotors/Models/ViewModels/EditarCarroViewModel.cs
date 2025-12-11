@@ -14,6 +14,6 @@ public class EditarCarroViewModel
     public string Transmissao { get; set; }
     public string Tracao { get; set; }
     public double Preco { get; set; }
-    public List<IFormFile> ArquivosImagens { get; set; }
-
+    public List<IFormFile>? NovosArquivosImagens { get; set; }
+    public List<CarroImagem>? ImagensExistentes { get; set; }
 }

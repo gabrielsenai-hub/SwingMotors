@@ -64,7 +64,21 @@
                 <label class="form-label mb-0 small text-light">Pesquise um carro:</label>
                 <input id="searchInput" class="form-control" placeholder="(ex: McLaren)" />
             </div>
-
+            <div class="col-auto">
+                <label class="form-label mb-0 small text-light">Filtrar por Marca:</label>
+                <select id="fabricFilter" class="form-select">
+                    <option value="">Todas as Marcas</option>
+                    <option value="Aston-Martin">Aston Martin</option>
+                    <option value="Bentley">Bentley</option>
+                    <option value="Bugatti">Bugatti</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Ferrari">Ferrari</option>
+                    <option value="Lamborghini">Lamborghini</option>
+                    <option value="Maserati">Maserati</option>
+                    <option value="McLaren">McLaren</option>
+                    <option value="Porsche">Porsche</option>
+                </select>
+            </div>
             <div class="col-auto d-none">
                 <label class="form-label mb-0 small text-light">Linhas</label>
                 <select id="rowsSelect" class="form-select">
@@ -121,18 +135,20 @@
 
     </div>
     <style>
-    .logoFabric{
-        height: 16%;
-     width: auto;
-     position: absolute;
-     top: 2vh;
-     right: 10px;
-     transition: 0.5s;
-    }
-    .logoFabric:hover{
-        transform: scale(1.1);
-     transition: 0.5s;
-    }
+        .logoFabric {
+            height: 16%;
+            width: auto;
+            position: absolute;
+            top: 2vh;
+            right: 10px;
+            transition: 0.5s;
+        }
+
+        .logoFabric:hover {
+            transform: scale(1.1);
+            transition: 0.5s;
+        }
+
         #grid {
             margin: 5vh 0 5vh 0;
         }
@@ -166,6 +182,8 @@
         /* faz o corpo do card ficar abaixo e botão encostado no final */
         .card-body {
             flex: 0 0 auto;
+            width: max-content;
+
         }
 
         .card-body .btn {
@@ -177,6 +195,11 @@
             /* empurra rodapé para baixo se houver */
         }
 
+        .card {
+            align-items: center;
+            justify-content: center;
+        }
+
         /* Ajustes para telas pequenas: diminui razão/altura */
         @@media (max-width: 767px) {
             .card-img-wrapper {
@@ -185,21 +208,22 @@
             }
         }
     </style>
-    <script>
+<script>
         // --- Dados de exemplo (substitua pelos seus dados reais) ---
+        // ... (Seus dados Model serializados) ...
         const items = @Html.Raw(JsonSerializer.Serialize(
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.Select(v => new
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                id = v.Id,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            title = v.Nome,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            price = v.Preco,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                img = v.ImgUrl,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                qtt = v.Quantidade,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            imgId = v.ImgId,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                url = v.Url,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                fabric = v.Fabricante
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            })
-                        ));
+                                    Model.Select(v => new
+                                    {
+                                        id = v.Id,
+                                        title = v.Nome,
+                                        price = v.Preco,
+                                        img = v.ImgUrl,
+                                        imgId = v.ImgId,
+                                        qtt = v.Quantidade,
+                                        url = v.Url,
+                                        fabric = v.Fabricante // Garante que a propriedade fabricante existe nos itens
+                                    })
+                                ));
         console.log(items)
         // Estado
         let currentPage = 1;
@@ -210,14 +234,15 @@
         // Elementos
         const grid = document.getElementById('grid');
         const searchInput = document.getElementById('searchInput');
+        const fabricFilter = document.getElementById('fabricFilter'); // NOVO ELEMENTO
         const rowsSelect = document.getElementById('rowsSelect');
         const colsSelect = document.getElementById('colsSelect');
         const itemsPerPageLabel = document.getElementById('itemsPerPageLabel');
         const totalItemsLabel = document.getElementById('totalItemsLabel');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const pageInput = document.getElementById('pageInput');
-        const goBtn = document.getElementById('goBtn');
+        // const pageInput = document.getElementById('pageInput'); // Removido
+        // const goBtn = document.getElementById('goBtn'); // Removido
         const currentPageLabel = document.getElementById('currentPageLabel');
         const totalPagesLabel = document.getElementById('totalPagesLabel');
         const pageList = document.getElementById('pageList');
@@ -252,44 +277,45 @@
                 const colWidth = Math.floor(12 / cols) || 12;
                 pageItems.forEach(item => {
                     const div = document.createElement('div');
-                    div.className = `imgCarro col - 12 col - md -${colWidth}`;
+                    // Correção na classe para interpolar a variável colWidth corretamente
+                    div.className = `imgCarro col-12 col-md-${colWidth}`;
                     const imgUrl = item.imgId === 0
                         ? "/img/no-image.png"
                         : `/Carro/Foto/${item.imgId}`;
 
-                        if(item.qtt > 0){
+                    if(item.qtt > 0){
                     div.innerHTML = `
-  <div class="card h-100 bg-dark text-white border border-white">
-    <a href="${item.url}" class="d-block">
-      <span class="card-img-wrapper">
-        <img src="${imgUrl}" class="img-fluid" alt="${item.title}" loading="lazy">
-      </span>
+    <div class="card h-100 bg-dark text-white border border-white">
+      <a href="${item.url}" class="d-block">
+        <span class="card-img-wrapper">
+          <img src="${imgUrl}" class="img-fluid" alt="${item.title}" loading="lazy">
+        </span>
         <img src="/IMG/Logo-Parcerias/${item.fabric}-logo.png" title="${item.fabric}" class="logoFabric" alt="${item.fabric}">
-    </a>
-    <div class="card-body text-center">
-      <h5 class="card-title mb-1">${item.title}</h5>
-      <div class="small text-muted">${item.price}</div>
-      <a href="${item.url}" class="btn btn-danger w-100 mt-2">${item.price}</a>
+      </a>
+      <div class="card-body text-center">
+        <h5 class="card-title mb-1">${item.title}</h5>
+        <div class="small text-muted">${item.price}</div>
+        <a href="${item.url}" class="btn btn-danger w-100 mt-2">${item.price}</a>
+      </div>
     </div>
-  </div>
 `;
 }
-else{                    
+else{                    
     div.innerHTML = `
 
       <div class="card h-100 bg-dark text-white border border-white">
-    <a href="${item.url}" class="d-block">
-      <span class="card-img-wrapper">
-        <img src="${imgUrl}" class="img-fluid" alt="${item.title}" loading="lazy">
-      </span>
+      <a href="${item.url}" class="d-block">
+        <span class="card-img-wrapper">
+          <img src="${imgUrl}" class="img-fluid" alt="${item.title}" loading="lazy">
+        </span>
         <img src="/IMG/Logo-Parcerias/${item.fabric}-logo.png" title="${item.fabric}" class="logoFabric" alt="${item.fabric}">
-    </a>
-    <div class="card-body text-center">
-      <h5 class="card-title mb-1">${item.title}</h5>
-      <div class="small text-white">Esgotado</div>
-      <a href="${item.url}" class="btn btn-dark w-100 mt-2">${item.price}</a>
+      </a>
+      <div class="card-body text-center">
+        <h5 class="card-title mb-1">${item.title}</h5>
+        <div class="small text-white">Esgotado</div>
+        <a href="${item.url}" class="btn btn-dark w-100 mt-2">${item.price}</a>
+      </div>
     </div>
-  </div>
 `;
 
 }
@@ -319,14 +345,16 @@ else{
             for (let i = start; i <= end; i++) {
                 const li = document.createElement('li');
                 li.className = 'page-item' + (i === currentPage ? ' active' : '');
-                li.innerHTML = `<button class ="page-link" data - page = "${i}" >${i
-                    }</button >`;
+                // Corrigido para remover espaços indesejados no atributo data-page
+                li.innerHTML = `<button class="page-link" data-page="${i}">${i}</button>`;
                 pageList.appendChild(li);
             }
 
             // clique nos botoes numericos
             pageList.querySelectorAll('button.page-link').forEach(btn => {
                 btn.addEventListener('click', (e) => {
+                    // Previne o comportamento padrão do botão se não for um link
+                    e.preventDefault(); 
                     const p = parseInt(e.currentTarget.dataset.page, 10);
                     if (!isNaN(p)) {
                         currentPage = p;
@@ -338,6 +366,11 @@ else{
 
         // Eventos
         searchInput.addEventListener('input', () => {
+            applyFilter();
+        });
+
+        // NOVO EVENT LISTENER PARA O FILTRO DE FABRICANTE
+        fabricFilter.addEventListener('change', () => {
             applyFilter();
         });
 
@@ -368,23 +401,20 @@ else{
             }
         });
 
-        goBtn.addEventListener('click', () => {
-            const val = parseInt(pageInput.value, 10);
-            const totalPages = computeTotalPages();
-            if (!isNaN(val)) {
-                currentPage = Math.min(Math.max(1, val), totalPages);
-                renderGrid();
-            }
-        });
-
-        pageInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') goBtn.click();
-        });
+        // ESTE LISTENER FOI REMOVIDO PARA EVITAR O ERRO DA PAGINAÇÃO
+        // pageList.addEventListener('click', () => { ... });
 
         function applyFilter() {
             const q = searchInput.value.trim().toLowerCase();
-            if (q === '') filtered = items.slice();
-            else filtered = items.filter(it => it.title.toLowerCase().includes(q));
+            const fabric = fabricFilter.value.trim().toLowerCase(); // Pega o valor do filtro
+
+            filtered = items.filter(item => {
+                const matchesSearch = q === '' || item.title.toLowerCase().includes(q);
+                const matchesFabric = fabric === '' || item.fabric.toLowerCase() === fabric;
+                
+                return matchesSearch && matchesFabric;
+            });
+            
             currentPage = 1;
             renderGrid();
         }
@@ -398,7 +428,6 @@ else{
             renderGrid();
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script></body>
 
 </html>

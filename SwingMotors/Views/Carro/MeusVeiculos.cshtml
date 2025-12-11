@@ -31,6 +31,11 @@
             padding: 4rem 0;
         }
 
+        .card {
+            align-items: center;
+            justify-content: center;
+        }
+
         body {
             background: linear-gradient(180deg, rgb(43, 42, 42), rgb(36, 36, 36))
         }
@@ -38,7 +43,7 @@
 </head>
 
 <body>
-        @if (TempData["sucesso"]!= null)
+    @if (TempData["sucesso"] != null)
     {
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             @TempData["sucesso"]
@@ -69,6 +74,21 @@
 
                 <label class="form-label mb-0 small text-light">Pesquise um carro:</label>
                 <input id="searchInput" class="form-control" placeholder="(ex: McLaren)" />
+            </div>
+            <div class="col-auto">
+                <label class="form-label mb-0 small text-light">Filtrar por Marca:</label>
+                <select id="fabricanteSelect" class="form-select">
+                    <option value="">Todas as Marcas</option>
+                    <option value="Aston-Martin">Aston Martin</option>
+                    <option value="Bentley">Bentley</option>
+                    <option value="Bugatti">Bugatti</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Ferrari">Ferrari</option>
+                    <option value="Lamborghini">Lamborghini</option>
+                    <option value="Maserati">Maserati</option>
+                    <option value="McLaren">McLaren</option>
+                    <option value="Porsche">Porsche</option>
+                </select>
             </div>
 
             <div class="col-auto d-none">
@@ -127,18 +147,20 @@
 
     </div>
     <style>
-    .logoFabric{
-        height: 16%;
-     width: auto;
-     position: absolute;
-     top: 2vh;
-     right: 10px;
-     transition: 0.5s;
-    }
-    .logoFabric:hover{
-        transform: scale(1.1);
-     transition: 0.5s;
-    }
+        .logoFabric {
+            height: 16%;
+            width: auto;
+            position: absolute;
+            top: 2vh;
+            right: 10px;
+            transition: 0.5s;
+        }
+
+        .logoFabric:hover {
+            transform: scale(1.1);
+            transition: 0.5s;
+        }
+
         #grid {
             margin: 5vh 0 5vh 0;
         }
@@ -172,6 +194,7 @@
         /* faz o corpo do card ficar abaixo e botão encostado no final */
         .card-body {
             flex: 0 0 auto;
+            width: max-content;
         }
 
         .card-body .btn {
@@ -194,40 +217,38 @@
     <script>
         // --- Dados de exemplo (substitua pelos seus dados reais) ---
         const items = @Html.Raw(JsonSerializer.Serialize(
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.Select(v => new
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                id = v.Id,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            title = v.Nome,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            price = v.Preco,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                img = v.ImgUrl,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            imgId = v.ImgId,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                url = v.Url,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                fabric = v.Fabricante
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Model.Select(v => new
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                id = v.Id,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                title = v.Nome,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                price = v.Preco,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                img = v.ImgUrl,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                imgId = v.ImgId,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                url = v.Url,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    fabric = v.Fabricante
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            })
                         ));
         console.log(items)
         // Estado
         let currentPage = 1;
-        let rows = parseInt(document.getElementById('rowsSelect').value, 10);
-        let cols = parseInt(document.getElementById('colsSelect').value, 10);
+        // Usamos os valores fixos para as dimensões do grid (3 colunas x 2 linhas = 6 itens)
+        const rows = 2;
+        const cols = 3;
         let filtered = items.slice();
 
         // Elementos
         const grid = document.getElementById('grid');
         const searchInput = document.getElementById('searchInput');
-        const rowsSelect = document.getElementById('rowsSelect');
-        const colsSelect = document.getElementById('colsSelect');
-        const itemsPerPageLabel = document.getElementById('itemsPerPageLabel');
-        const totalItemsLabel = document.getElementById('totalItemsLabel');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const pageInput = document.getElementById('pageInput');
-        const goBtn = document.getElementById('goBtn');
         const currentPageLabel = document.getElementById('currentPageLabel');
         const totalPagesLabel = document.getElementById('totalPagesLabel');
-        const pageList = document.getElementById('pageList');
 
-        // Helpers
+        // NOVO ELEMENTO
+        const fabricanteSelect = document.getElementById('fabricanteSelect');
+
+
+        // --- Helpers ---
         function getItemsPerPage() {
             return rows * cols;
         }
@@ -236,11 +257,25 @@
             return Math.max(1, Math.ceil(filtered.length / getItemsPerPage()));
         }
 
-        function renderGrid() {
-            // Atualiza labels
-            itemsPerPageLabel.textContent = getItemsPerPage();
-            totalItemsLabel.textContent = filtered.length;
+        // NOVO: Função para obter a lista única de fabricantes
+        function getUniqueManufacturers() {
+            const manufacturers = items.map(item => item.fabric);
+            return [...new Set(manufacturers)].sort();
+        }
 
+        // NOVO: Função para popular o dropdown de fabricantes
+        function populateManufacturerSelect() {
+            const uniqueManufacturers = getUniqueManufacturers();
+            uniqueManufacturers.forEach(fabric => {
+                const option = document.createElement('option');
+                option.value = fabric;
+                option.textContent = fabric;
+                fabricanteSelect.appendChild(option);
+            });
+        }
+
+
+        function renderGrid() {
             const totalPages = computeTotalPages();
             if (currentPage > totalPages) currentPage = totalPages;
 
@@ -254,28 +289,32 @@
             if (pageItems.length === 0) {
                 grid.innerHTML = '<div class="col-12 text-center no-results text-light">Nenhum resultado encontrado.</div>';
             } else {
-                const colWidth = Math.floor(12 / cols) || 12;
+                // Coluna de largura fixa para um grid de 3 colunas
+                const colWidthClass = 'col-md-4';
+
                 pageItems.forEach(item => {
                     const div = document.createElement('div');
-                    div.className = `imgCarro col - 12 col - md -${colWidth}`;
+                    // Usamos a classe CSS de largura fixa
+                    div.className = `imgCarro col-12 ${colWidthClass}`;
+
                     const imgUrl = item.imgId === 0
                         ? "/img/no-image.png"
                         : `/Carro/Foto/${item.imgId}`;
 
                     div.innerHTML = `
-  <div class="card h-100 bg-dark text-white border border-white">
-    <a href="${item.url}" class="d-block">
-      <span class="card-img-wrapper">
-        <img src="${imgUrl}" class="img-fluid" alt="${item.title}" loading="lazy">
-      </span>
-        <img src="/IMG/Logo-Parcerias/${item.fabric}-logo.png" title="${item.fabric}" class="logoFabric" alt="${item.fabric}">
-    </a>
-    <div class="card-body text-center">
-      <h5 class="card-title mb-1">${item.title}</h5>
-      <div class="small text-muted">${item.price}</div>
-      <a href="${item.url}" class="btn btn-danger w-100 mt-2">${item.price}</a>
-    </div>
-  </div>
+ <div class="card h-100 bg-dark text-white border border-white">
+   <a href="${item.url}" class="d-block">
+     <span class="card-img-wrapper">
+       <img src="${imgUrl}" class="img-fluid" alt="${item.title}" loading="lazy">
+     </span>
+     <img src="/IMG/Logo-Parcerias/${item.fabric}-logo.png" title="${item.fabric}" class="logoFabric" alt="${item.fabric}">
+   </a>
+   <div class="card-body text-center">
+     <h5 class="card-title mb-1">${item.title}</h5>
+     <div class="small text-muted">${item.price}</div>
+     <a href="${item.url}" class="btn btn-danger w-100 mt-2">${item.price}</a>
+   </div>
+ </div>
 `;
 
                     grid.appendChild(div);
@@ -287,54 +326,18 @@
             totalPagesLabel.textContent = totalPages;
             prevBtn.disabled = currentPage === 1;
             nextBtn.disabled = currentPage === totalPages;
-
-            renderPageList(totalPages);
         }
 
-        function renderPageList(totalPages) {
-            pageList.innerHTML = '';
-            // mostramos até 7 botões (ajustável)
-            const maxButtons = 7;
-            const half = Math.floor(maxButtons / 2);
-            let start = Math.max(1, currentPage - half);
-            let end = Math.min(totalPages, start + maxButtons - 1);
-            if (end - start < maxButtons - 1) start = Math.max(1, end - maxButtons + 1);
 
-            for (let i = start; i <= end; i++) {
-                const li = document.createElement('li');
-                li.className = 'page-item' + (i === currentPage ? ' active' : '');
-                li.innerHTML = `<button class ="page-link" data - page = "${i}" >${i
-                    }</button >`;
-                pageList.appendChild(li);
-            }
+        // --- Eventos ---
 
-            // clique nos botoes numericos
-            pageList.querySelectorAll('button.page-link').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const p = parseInt(e.currentTarget.dataset.page, 10);
-                    if (!isNaN(p)) {
-                        currentPage = p;
-                        renderGrid();
-                    }
-                });
-            });
-        }
-
-        // Eventos
-        searchInput.addEventListener('input', () => {
+        // NOVO: Evento para o filtro de fabricante
+        fabricanteSelect.addEventListener('change', () => {
             applyFilter();
         });
 
-        rowsSelect.addEventListener('change', (e) => {
-            rows = parseInt(e.target.value, 10);
-            currentPage = 1;
-            renderGrid();
-        });
-
-        colsSelect.addEventListener('change', (e) => {
-            cols = parseInt(e.target.value, 10);
-            currentPage = 1;
-            renderGrid();
+        searchInput.addEventListener('input', () => {
+            applyFilter();
         });
 
         prevBtn.addEventListener('click', () => {
@@ -352,32 +355,34 @@
             }
         });
 
-        goBtn.addEventListener('click', () => {
-            const val = parseInt(pageInput.value, 10);
-            const totalPages = computeTotalPages();
-            if (!isNaN(val)) {
-                currentPage = Math.min(Math.max(1, val), totalPages);
-                renderGrid();
-            }
-        });
-
-        pageInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') goBtn.click();
-        });
-
         function applyFilter() {
             const q = searchInput.value.trim().toLowerCase();
-            if (q === '') filtered = items.slice();
-            else filtered = items.filter(it => it.title.toLowerCase().includes(q));
+            const selectedFabric = fabricanteSelect.value; // Pega o valor selecionado
+
+            // Filtra os itens: primeiro pelo fabricante (se selecionado), depois pelo texto de busca
+            filtered = items.filter(item => {
+                // 1. Filtro por Fabricante
+                const matchesFabric = selectedFabric === "" || item.fabric === selectedFabric;
+
+                // 2. Filtro por Texto (título ou fabricante)
+                const matchesQuery = q === "" ||
+                    item.title.toLowerCase().includes(q) ||
+                    item.fabric.toLowerCase().includes(q);
+
+                // Retorna apenas se ambos os filtros corresponderem
+                return matchesFabric && matchesQuery;
+            });
+
             currentPage = 1;
             renderGrid();
         }
 
         // Inicial
         document.addEventListener('DOMContentLoaded', () => {
-            // garante que labels estejam corretos antes do primeiro render
-            rows = parseInt(rowsSelect.value, 10);
-            cols = parseInt(colsSelect.value, 10);
+            // 1. Popula o filtro de fabricante
+            populateManufacturerSelect();
+
+            // 2. Renderiza o grid
             filtered = items.slice();
             renderGrid();
         });

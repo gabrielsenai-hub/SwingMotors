@@ -11,8 +11,10 @@ namespace AvaliacaoFinalWestn.Repository
         public Task Criar(Carro carro, List<CarroImagem> Imagens);
         Task<Carro> BuscarPorIdAsync(int id);
         public Carro BuscarPorId(int id);
+        public Task DeletarImagensAsync(int[] ids);
 
         public CarroImagem BuscarImgPorId(int id);
+        public Task<List<CarroImagem>> BuscarImagens(int id);
 
         public Task Editar(Carro carro, IEnumerable<IFormFile>? imagensNovas);
         public Task Deletar(int id);

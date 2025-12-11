@@ -34,6 +34,24 @@ namespace AvaliacaoFinalWestn.Repository
             return _context.CarroImagens
                 .FirstOrDefault(c => c.Id == id);
         }
+        public async Task<List<CarroImagem>> BuscarImagens(int id)
+        {
+            return await _context.CarroImagens
+                .Where(i => i.CarroId == id)
+                .ToListAsync();
+        }
+        // Exemplo de implementação no Repositório (ou onde você faz a manipulação do DBContext)
+        public async Task DeletarImagensAsync(int[] ids)
+        {
+            // 1. Busca as entidades de imagem que correspondem aos IDs
+            var imagensParaDeletar = await _context.CarroImagens
+                .Where(i => ids.Contains(i.Id))
+                .ToListAsync();
+
+            // 3. Deleta do banco de dados
+            _context.CarroImagens.RemoveRange(imagensParaDeletar);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task Criar(Carro carro, List<CarroImagem> imagens)
         {
@@ -50,7 +68,7 @@ namespace AvaliacaoFinalWestn.Repository
             }
             else
             {
-                carroExistente.Quantidade +=  carro.Quantidade;
+                carroExistente.Quantidade += carro.Quantidade;
                 _context.Carros.Update(carroExistente);
             }
 
@@ -99,9 +117,6 @@ namespace AvaliacaoFinalWestn.Repository
             // Atualizar imagens se enviadas
             if (imagensNovas != null && imagensNovas.Any())
             {
-                // Remove as antigas
-                _context.CarroImagens.RemoveRange(carroB.Fotos);
-
                 // Adiciona novas
                 foreach (var file in imagensNovas)
                 {

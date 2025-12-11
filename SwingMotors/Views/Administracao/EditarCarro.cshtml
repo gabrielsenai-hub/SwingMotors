@@ -9,76 +9,113 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
-
 <div class="container-sm p-lg-5 mt-4 pe-3  custom-bg border border-danger ">
     <p class="fs-3 text-white">Edição de veículo</p>
     <form class="row g-3 text-white" enctype="multipart/form-data" asp-controller="Carro" asp-action="EditarCarro"
-          method="post">
+        method="post">
         <div class="col-md-6">
-            <input asp-for="Id" type="hidden" class="form-control bg-dark border-dark text-white" id="inputId"
-                   required>
+            <input asp-for="Id" type="hidden" class="form-control bg-dark border-dark text-white" id="inputId" required>
         </div>
         <div class="col-md-6">
             <label for="inputNomeVeiculo" class="form-label">Modelo</label>
-            <input value="@Model.Nome" asp-for="Nome" type="text" class="form-control bg-dark border-dark text-white" id="inputNomeVeiculo"
-                   required>
+            <input value="@Model.Nome" asp-for="Nome" type="text" class="form-control bg-dark border-dark text-white"
+                id="inputNomeVeiculo" required>
         </div>
         <div class="col-md-3">
             <label for="inputFabricanteVeiculo" class="form-label">Fabricante</label>
-            <input value="@Model.Fabricante" asp-for="Fabricante" type="text" class="form-control bg-dark border-dark text-white"
-                   id="inputFabricanteVeiculo" required>
+            <select value="@Model.Fabricante" asp-for="Fabricante" class="form-control bg-dark border-dark text-white" id="inputFabricanteVeiculo"
+                required>
+
+                <option value="">Selecione...</option>
+                <option value="Aston-Martin">Aston Martin</option>
+                <option value="Bentley">Bentley</option>
+                <option value="Bugatti">Bugatti</option>
+                <option value="BMW">BMW</option>
+                <option value="Ferrari">Ferrari</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Maserati">Maseratti</option>
+                <option value="McLaren">McLaren</option>
+                <option value="Porsche">Porsche</option>
+
+            </select>
         </div>
         <div class="col-md-3">
             <label for="inputQuantidadeVeiculo" class="form-label ">Quantidade</label>
-            <input value="@Model.Quantidade" asp-for="Quantidade" type="number" class="form-control bg-dark border-dark text-white"
-                   id="inputQuantidadeVeiculo" max="20" required>
+            <input value="@Model.Quantidade" asp-for="Quantidade" type="number"
+                class="form-control bg-dark border-dark text-white" id="inputQuantidadeVeiculo" max="20" required>
         </div>
         <div class="col-md-3">
             <label for="inputMotorVeiculo" class="form-label">Motor</label>
             <input value="@Model.Motor" asp-for="Motor" type="text" class="form-control bg-dark border-dark text-white"
-                   id="inputMotorVeiculo" required>
+                id="inputMotorVeiculo" required>
         </div>
         <div class="col-md-3">
             <label for="inputPotenciaVeiculo" class="form-label">Potência (em cavalos)</label>
-            <input value="@Model.Potencia" asp-for="Potencia" type="number" class="form-control bg-dark border-dark text-white"
-                   id="inputPotenciaVeiculo" required>
+            <input value="@Model.Potencia" asp-for="Potencia" type="number"
+                class="form-control bg-dark border-dark text-white" id="inputPotenciaVeiculo" required>
         </div>
         <div class="col-md-3">
             <label for="inputTransmissaoVeiculo" class="form-label">Transmissão</label>
             <input value="@Model.Transmissao" asp-for="Transmissao" placeholder="ex: '3.0:1'" type="text" required
-                   class="form-control bg-dark border-dark text-white" id="inputTransmissaoVeiculo">
+                class="form-control bg-dark border-dark text-white" id="inputTransmissaoVeiculo">
         </div>
         <div class="col-md-3">
             <label for="inputTracaoVeiculo" class="form-label">Tração</label>
-            <input value="@Model.Tracao" asp-for="Tracao" type="number" required class="form-control bg-dark border-dark text-white"
-                   id="inputTracaoVeiculo">
+            <input value="@Model.Tracao" asp-for="Tracao" type="text" required
+                class="form-control bg-dark border-dark text-white" id="inputTracaoVeiculo">
         </div>
         <div class="col-md-3">
             <label for="inputZeroCemVeiculo" class="form-label">0-100 Km/h (em quantos seguntos se faz 100km)</label>
-            <input value="@Model.ZeroaAcem" asp-for="ZeroaAcem" type="number" required class="form-control bg-dark border-dark text-white"
-                   id="inputZeroCemVeiculo">
+            <input value="@Model.ZeroaAcem" asp-for="ZeroaAcem" type="number" required
+                class="form-control bg-dark border-dark text-white" id="inputZeroCemVeiculo">
         </div>
         <div class="col-md-3">
             <label for="inputVelocidadeMaxVeiculo" class="form-label">Velocidade Máxima (em km/h)</label>
-            <input value="@Model.VelocidadeMax" asp-for="VelocidadeMax" type="number" required class="form-control bg-dark border-dark text-white"
-                   id="inputVelocidadeMaxVeiculo">
+            <input value="@Model.VelocidadeMax" asp-for="VelocidadeMax" type="number" required
+                class="form-control bg-dark border-dark text-white" id="inputVelocidadeMaxVeiculo">
         </div>
         <div class="col-md-3">
             <label for="inputTorque" class="form-label">Torque (em Nm)</label>
-            <input value="@Model.Torque" asp-for="Torque" type="number" required class="form-control bg-dark border-dark text-white"
-                   id="inputTorque">
+            <input value="@Model.Torque" asp-for="Torque" type="number" required
+                class="form-control bg-dark border-dark text-white" id="inputTorque">
         </div>
         <div class="mb-3">
-            <label for="arquivosImagens" class="form-label">Adicione Imagens do Veiculo</label>
-            <input value="@Model.ArquivosImagens" asp-for="ArquivosImagens" type="file"
-                   class="form-control bg-dark border-dark text-white"
-                   id="arquivosImagens" name="ArquivosImagens"
-                   accept="image/*" multiple required>
+            <label for="NovosArquivosImagens" class="form-label">Adicione Novas Imagens do Veiculo</label>
+            <input asp-for="NovosArquivosImagens" type="file" class="form-control bg-dark border-dark text-white"
+                id="NovosArquivosImagens" name="NovosArquivosImagens" accept="image/*" multiple>
+            <div id="avisoMax" class="text-warning mt-1"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Imagens Existentes:</label>
+            <div class="row">
+                @if (Model.ImagensExistentes != null)
+                {
+                    @* A lógica do loop para checkboxes está OK *@
+                    @for (int i = 0; i < Model.ImagensExistentes.Count; i++)
+                    {
+                        var imagem = Model.ImagensExistentes[i];
+
+                        <div class="col-md-3 mb-4">
+                            <img src="/Carro/Foto/@imagem.Id" alt="Imagem do Carro" class="img-fluid rounded"
+                                style="height: 150px; object-fit: cover;">
+
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" name="idsImagensParaDeletar" value="@imagem.Id"
+                                    id="delete-@imagem.Id"> 
+                                    <label class="form-check-label" for="delete-@imagem.Id">
+                                    Marcar para Excluir
+                                </label>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
         </div>
         <div class="mb-3">
             <label for="Preco" class="form-label">Preço</label>
-            <input value="@Model.Preco" asp-for="Preco" type="number" class="form-control bg-dark border-dark text-white" id="Preco"
-                   name="Preco" required>
+            <input value="@Model.Preco" asp-for="Preco" type="number"
+                class="form-control bg-dark border-dark text-white" id="Preco" name="Preco" required>
         </div>
 
 
@@ -87,3 +124,55 @@
         </div>
     </form>
 </div>
+<script>
+    document.getElementById("NovosArquivosImagens").addEventListener("change", function () {
+        // 1. Conta quantas imagens existentes NÃO estão marcadas para exclusão.
+        const checkboxes = document.querySelectorAll('input[name="idsImagensParaDeletar"]:not(:checked)');
+        const imagensAtivas = checkboxes.length;
+
+        // 2. Define o limite máximo de imagens (ex: 5)
+        const limiteTotal = 5; 
+
+        // 3. Calcula o máximo que pode ser enviado agora
+        const maxNovoUpload = limiteTotal - imagensAtivas; 
+
+        const aviso = document.getElementById("avisoMax");
+
+        if (this.files.length > maxNovoUpload) {
+            aviso.innerHTML = `Você não pode enviar mais imagens! O limite total é ${limiteTotal} e você tem ${imagensAtivas} ativas.`;
+            this.value = ""; // Limpa a seleção
+        }
+        else {
+            aviso.innerHTML = "";
+        }
+    });
+
+    // Função para atualizar o aviso caso o usuário marque/desmarque uma imagem existente
+    function recalcularMaxUpload() {
+        const inputUpload = document.getElementById("NovosArquivosImagens");
+        const checkboxes = document.querySelectorAll('input[name="idsImagensParaDeletar"]:not(:checked)');
+        const imagensAtivas = checkboxes.length;
+        const limiteTotal = 5; 
+        const maxNovoUpload = limiteTotal - imagensAtivas;
+        const aviso = document.getElementById("avisoMax");
+
+        if(maxNovoUpload > 0)
+        aviso.innerHTML = `Você pode enviar até ${maxNovoUpload} novas imagens.`;
+        else
+        aviso.innerHTML = `Você não pode enviar novas imagens, limite atingido!`;
+
+        // Se o número de arquivos selecionados for maior que o novo máximo permitido, limpa e avisa
+        if (inputUpload.files.length > maxNovoUpload) {
+            inputUpload.value = "";
+            aviso.innerHTML = `O limite de uploads mudou para ${maxNovoUpload} após a seleção de exclusão. Seleção limpa.`;
+        }
+    }
+
+    // Adiciona o evento de clique a todos os checkboxes para recalcular
+    document.querySelectorAll('input[name="idsImagensParaDeletar"]').forEach(checkbox => {
+        checkbox.addEventListener('change', recalcularMaxUpload);
+    });
+
+    // Executa uma vez ao carregar para mostrar o máximo inicial
+    document.addEventListener('DOMContentLoaded', recalcularMaxUpload);
+</script>

@@ -53,7 +53,7 @@ public class CarroController : Controller
             );
             return RedirectToAction("CadastroVeiculo", "Administracao");
         }
-        if(vm.ArquivosImagens.Count > 5)
+        if (vm.ArquivosImagens.Count > 5)
         {
             TempData["ErroCarro"] = "Um carro só pode ter no máximo 5 imagens!";
             return RedirectToAction("CadastroVeiculo", "Administracao");
@@ -98,17 +98,36 @@ public class CarroController : Controller
         return RedirectToAction("Index", "Home");
     }
 
-    [HttpPost("Editar")]
-    public async Task<IActionResult> EditarCarro(EditarCarroViewModel vm)
+    [HttpPost]
+    [ActionName("EditarCarro")]
+    public async Task<IActionResult> EditarCarro(
+        EditarCarroViewModel vm,
+        [FromForm] int[]? idsImagensParaDeletar)
     {
         if (!ModelState.IsValid)
-            return RedirectToAction("EditarCarro", "Carro", new { id = vm.Id });
+        {
+            if (vm.ImagensExistentes == null)
+            {
+                vm.ImagensExistentes = await _carroRepository.BuscarImagens(vm.Id);
+            }
+            return View(vm);
+        }
 
         var carro = await _carroRepository.BuscarPorIdAsync(vm.Id);
 
         if (carro == null)
+        {
+            TempData["ErroCarro"] = "Veículo não encontrado para edição.";
             return RedirectToAction("Colecao", "Carro");
+        }
 
+        // 2. Lógica de Exclusão: Se houver IDs para deletar, chame o método de exclusão.
+        if (idsImagensParaDeletar != null && idsImagensParaDeletar.Length > 0)
+        {
+            await _carroRepository.DeletarImagensAsync(idsImagensParaDeletar); // Você precisa criar este método!
+        }
+
+        // 3. Atualiza as propriedades do Carro com os dados da ViewModel
         carro.Nome = vm.Nome;
         carro.Fabricante = vm.Fabricante;
         carro.Motor = vm.Motor;
@@ -121,11 +140,12 @@ public class CarroController : Controller
         carro.Tracao = vm.Tracao;
         carro.Preco = vm.Preco;
 
-        await _carroRepository.Editar(carro, vm.ArquivosImagens);
+        // 4. Edita o carro e salva as Novas Imagens (a exclusão já foi feita acima)
+        await _carroRepository.Editar(carro, vm.NovosArquivosImagens);
 
+        TempData["SucessoCarro"] = "Veículo editado com sucesso!";
         return RedirectToAction("Colecao", "Carro");
     }
-
     public async Task<IActionResult> DetalhesVeiculo(int id)
     {
         var carro = await _carroRepository.BuscarPorIdAsync(id);
@@ -241,7 +261,7 @@ public class CarroController : Controller
         {
             Id = cc.Carro.Id,
             Nome = cc.Carro.Nome,
-            Preco = cc.Carro.Preco.ToString("C"),
+            Preco = cc.Carro.Preco.ToString("C", new System.Globalization.CultureInfo("pt-BR")),
             Fabricante = cc.Carro.Fabricante,
             ImgId = cc.Carro.Fotos?.FirstOrDefault()?.Id ?? 0,
             Url = Url.Action("DetalhesVeiculoComprado", "Carro", new { id = cc.Id })

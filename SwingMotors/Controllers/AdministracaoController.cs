@@ -25,6 +25,7 @@ public class AdministracaoController : Controller
     public async Task<IActionResult> EditarCarro(int id)
     {
         var carro = await _carroRepository.BuscarPorIdAsync(id);
+        var imagens = await _carroRepository.BuscarImagens(carro.Id);
         EditarCarroViewModel vm = new EditarCarroViewModel()
         {
             Id = carro.Id,
@@ -38,7 +39,8 @@ public class AdministracaoController : Controller
             VelocidadeMax = carro.VelocidadeMax,
             Transmissao = carro.Transmissao,
             Tracao = carro.Tracao,
-            Preco = carro.Preco
+            Preco = carro.Preco,
+            ImagensExistentes = imagens
         };
 
         return View(vm);
