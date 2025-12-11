@@ -20,8 +20,10 @@ public class CarroController : Controller
     private readonly ICarroRepository _carroRepository;
     private readonly UserManager<Usuario> _userManager;
     private readonly ICarroCompradoRepository _carroCompradoRepository;
-    public CarroController(ICarroRepository carroRepository, UserManager<Usuario> userManager, ICarroCompradoRepository carroCompradoRepository)
+    private readonly IEnderecoRepository _endereçoRepository;
+    public CarroController(IEnderecoRepository enderecoRepository, ICarroRepository carroRepository, UserManager<Usuario> userManager, ICarroCompradoRepository carroCompradoRepository)
     {
+        _endereçoRepository = enderecoRepository;
         _carroRepository = carroRepository;
         _userManager = userManager;
         _carroCompradoRepository = carroCompradoRepository;
@@ -168,6 +170,9 @@ public class CarroController : Controller
 
         if (compra == null)
             return NotFound();
+        var user = await _userManager.GetUserAsync(User);
+
+        var endereco = _endereçoRepository.Buscar(user.Id);
 
         var vm = new CarroCompradoVm
         {
@@ -176,6 +181,7 @@ public class CarroController : Controller
             Fabricante = compra.Carro.Fabricante,
             PrecoPago = compra.PrecoPago,
             DataCompra = compra.DataCompra,
+            Endereco = endereco,
             Fotos = compra.Carro.Fotos
                 .Select(f => Url.Action("Foto", "Carro", new { id = f.Id }))
                 .ToList()
@@ -265,6 +271,7 @@ public class CarroController : Controller
             Fabricante = cc.Carro.Fabricante,
             ImgId = cc.Carro.Fotos?.FirstOrDefault()?.Id ?? 0,
             Url = Url.Action("DetalhesVeiculoComprado", "Carro", new { id = cc.Id })
+
         })
         .ToList();
 

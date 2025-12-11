@@ -33,7 +33,7 @@ body {
 
 /* Estilo para as logos das marcas */
 .logo-parceira {
-  height: 60px; /* Altura fixa para as logos no carrossel */
+  height: 90px; /* Altura fixa para as logos no carrossel */
   /* filter: grayscale(100%) brightness(150%); Deixa as logos em tons de cinza/branco para elegância */
   opacity: 0.7;
   transition: opacity 0.3s;

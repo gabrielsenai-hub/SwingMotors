@@ -1,7 +1,7 @@
 @using AvaliacaoFinalWestn.Models.ViewModels
 @model CarroCompradoVm
 @{
-    ViewData["Title"] = "Meu" + Model.Nome;
+    ViewData["Title"] = "Meu " + Model.Nome;
 }
 
 <div class="container-sm p-lg-5 mt-4 pe-3 custom-bg border border-danger">
@@ -94,6 +94,9 @@
                 Esta unidade foi comprada em <b>@Model.DataCompra.ToString("dd/MM/yyyy")</b> por 
                 <b>@Model.PrecoPago</b>.
                 <br><br>
+                Entregue em: 
+                <strong>@Model.Endereco.Rua, @Model.Endereco.Bairro, @Model.Endereco.Cidade - @Model.Endereco.Estado - Cep: @Model.Endereco.Cep</strong>
+                <br> <br>
                 Acima estão as fotos registradas deste veículo no momento da aquisição.
             </p>
 

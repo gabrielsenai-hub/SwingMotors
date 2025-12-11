@@ -13,5 +13,6 @@ namespace AvaliacaoFinalWestn.Models.ViewModels
         public string PrecoPago { get; set; }
         public DateTime DataCompra { get; set; }
         public List<string> Fotos { get; set; }
+        public Endereco Endereco { get; set; }
     }
 }

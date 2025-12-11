@@ -10,6 +10,11 @@
     </div>
 }
 <div class="container-sm p-lg-5 mt-4 pe-3  custom-bg border border-danger ">
+        <form asp-controller="Carro" asp-action="DetalhesVeiculo" method="post">
+    <input name="id" type="hidden" value="@Model.Id"/>
+    <button class="btn btn-primary" type="submit">Voltar</button>
+    </form>
+
     <p class="fs-3 text-white">Edição de veículo</p>
     <form class="row g-3 text-white" enctype="multipart/form-data" asp-controller="Carro" asp-action="EditarCarro"
         method="post">

@@ -102,71 +102,79 @@
             </table>
             <p class="fs-1 text-white">Descrição</p>
             <p class="lh-base text-white"></p>
-            @if(Model.Carro.Quantidade > 0){
-            <p class="lh-base text-white">
+            @if (Model.Carro.Quantidade > 0)
+            {
+                <p class="lh-base text-white">
 
-                O @Model.Carro.Nome, da renomada @Model.Carro.Fabricante, chega entregando um conjunto impressionante de
-                desempenho e tecnologia. Equipado com um motor @Model.Carro.Motor, ele gera @Model.Carro.Potencia de
-                potência
-                e @Model.Carro.Torque Nm de torque, garantindo respostas rápidas e uma condução empolgante em qualquer
-                situação.
+                    O @Model.Carro.Nome, da renomada @Model.Carro.Fabricante, chega entregando um conjunto impressionante de
+                    desempenho e tecnologia. Equipado com um motor @Model.Carro.Motor, ele gera @Model.Carro.Potencia de
+                    potência
+                    e @Model.Carro.Torque Nm de torque, garantindo respostas rápidas e uma condução empolgante em qualquer
+                    situação.
 
-                Do 0 aos 100 km/h, o modelo alcança a marca de @Model.Carro.ZeroaAcem segundos, mostrando que não veio
-                para brincadeira. Sua velocidade máxima chega a @Model.Carro.VelocidadeMax Km/h, permitindo explorar
-                todo o
-                potencial do conjunto mecânico.
+                    Do 0 aos 100 km/h, o modelo alcança a marca de @Model.Carro.ZeroaAcem segundos, mostrando que não veio
+                    para brincadeira. Sua velocidade máxima chega a @Model.Carro.VelocidadeMax Km/h, permitindo explorar
+                    todo o
+                    potencial do conjunto mecânico.
 
-                Para completar, o carro traz transmissão de @Model.Carro.Transmissao e tração de @Model.Carro.Tracao N,
-                entregando estabilidade, eficiência e uma dirigibilidade refinada. Atualmente, 
-                 contamos com @Model.Carro.Quantidade
-                unidades disponíveis em estoque.
+                    Para completar, o carro traz transmissão de @Model.Carro.Transmissao e tração de @Model.Carro.Tracao N,
+                    entregando estabilidade, eficiência e uma dirigibilidade refinada. Atualmente,
+                    contamos com @Model.Carro.Quantidade
+                    unidades disponíveis em estoque.
 
-                Com preço a partir de @Model.Carro.Preco.ToString("C", new System.Globalization.CultureInfo("pt-BR"))
-                , o @Model.Carro.Nome se destaca como uma das melhores opções
-                da categoria para quem busca desempenho, estilo e confiabilidade.
-            </p>
+                    Com preço a partir de @Model.Carro.Preco.ToString("C", new System.Globalization.CultureInfo("pt-BR"))
+                    , o @Model.Carro.Nome se destaca como uma das melhores opções
+                    da categoria para quem busca desempenho, estilo e confiabilidade.
+                </p>
             }
-            else{
-                            <p class="lh-base text-white">
+            else
+            {
+                <p class="lh-base text-white">
 
-                O @Model.Carro.Nome, da renomada @Model.Carro.Fabricante, chega entregando um conjunto impressionante de
-                desempenho e tecnologia. Equipado com um motor @Model.Carro.Motor, ele gera @Model.Carro.Potencia de
-                potência
-                e @Model.Carro.Torque Nm de torque, garantindo respostas rápidas e uma condução empolgante em qualquer
-                situação.
+                    O @Model.Carro.Nome, da renomada @Model.Carro.Fabricante, chega entregando um conjunto impressionante de
+                    desempenho e tecnologia. Equipado com um motor @Model.Carro.Motor, ele gera @Model.Carro.Potencia de
+                    potência
+                    e @Model.Carro.Torque Nm de torque, garantindo respostas rápidas e uma condução empolgante em qualquer
+                    situação.
 
-                Do 0 aos 100 km/h, o modelo alcança a marca de @Model.Carro.ZeroaAcem segundos, mostrando que não veio
-                para brincadeira. Sua velocidade máxima chega a @Model.Carro.VelocidadeMax Km/h, permitindo explorar
-                todo o
-                potencial do conjunto mecânico.
+                    Do 0 aos 100 km/h, o modelo alcança a marca de @Model.Carro.ZeroaAcem segundos, mostrando que não veio
+                    para brincadeira. Sua velocidade máxima chega a @Model.Carro.VelocidadeMax Km/h, permitindo explorar
+                    todo o
+                    potencial do conjunto mecânico.
 
-                Para completar, o carro traz transmissão de @Model.Carro.Transmissao e tração de @Model.Carro.Tracao N,
-                entregando estabilidade, eficiência e uma dirigibilidade refinada. <strong>Atualmente, 
-                 estamos sem
-                unidades disponíveis em estoque.</strong> 
+                    Para completar, o carro traz transmissão @Model.Carro.Transmissao e tração @Model.Carro.Tracao,
+                    entregando estabilidade, eficiência e uma dirigibilidade refinada. <strong class="alert-danger">Atualmente,
+                        estamos sem
+                        unidades disponíveis em estoque.</strong>
 
-                Com preço a partir de @Model.Carro.Preco.ToString("C", new System.Globalization.CultureInfo("pt-BR"))
-                , o @Model.Carro.Nome se destaca como uma das melhores opções
-                da categoria para quem busca desempenho, estilo e confiabilidade.
-            </p>
+                    Com preço a partir de @Model.Carro.Preco.ToString("C", new System.Globalization.CultureInfo("pt-BR"))
+                    , o @Model.Carro.Nome se destaca como uma das melhores opções
+                    da categoria para quem busca desempenho, estilo e confiabilidade.
+                </p>
 
             }
         </div>
     </div>
     <div class="d-grid gap-2">
-        @if(Model.Carro.Quantidade > 0){
+        @if (!User.IsInRole("Admin"))
+        {
+
+            if (Model.Carro.Quantidade > 0)
+            {
 
                 <form asp-controller="Carro" class="w-100" asp-action="FinalizarCompra" method="post">
-            <input type="hidden" name="id" value="@Model.Carro.Id" />
-            <button class="btn btn-primary w-100" type="submit">Adiquira-já</button>
-        </form>
+                    <input type="hidden" name="id" value="@Model.Carro.Id" />
+                    <button class="btn btn-primary w-100" type="submit">Adiquira-já</button>
+                </form>
+            }
+            else
+            {
+                <div class="w-100 btn btn-dark">
+                    Esgotado!
+                </div>
+            }
         }
-        else{
-            <div class="w-100 btn btn-dark">
-            Esgotado!
-            </div>
-        }
-        @if (User.IsInRole("Admin"))
+        else
         {
             <form asp-controller="Administracao" asp-action="EditarCarro" method="post" class="w-100">
                 <input type="hidden" name="id" value="@Model.Carro.Id" />
@@ -174,7 +182,7 @@
             </form>
             <form asp-controller="Administracao" asp-action="DeletarCarro" method="post" class="w-100">
                 <input type="hidden" name="id" value="@Model.Carro.Id" />
-                <button class="btn btn-danger" type="submit">Excluir</button>
+                <button class="btn btn-danger w-100" type="submit">Excluir</button>
             </form>
         }
     </div>

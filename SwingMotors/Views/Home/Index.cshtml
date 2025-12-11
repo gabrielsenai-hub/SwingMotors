@@ -1,6 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Inicio";
 }
+    @if (TempData["ContatoSuccess"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["ContatoSuccess"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
 <header class="hero-section">
     <div class="container text-white ">
         <h1 class="display-3 fw-bold mb-3">EXPERIMENTE A ELITE AUTOMOTIVA.</h1>
@@ -68,34 +76,34 @@
 
                 <div class="carousel-item active">
                     <div class="row justify-content-center align-items-center">
-                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Ferrari-logo.png"
-                                                            class="logo-parceira" alt="Logo Ferrari"></div>
-                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Lamborghini-logo.png"
-                                                            class="logo-parceira" alt="Logo Lamborghini"></div>
-                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Porsche-logo.png"
-                                                            class="logo-parceira" alt="Logo Porsche"></div>
+                        <div class="col-3 text-center"><a href="https://www.ferrari.com/en-BR" target="_blank"><img src="~/IMG/Logo-Parcerias/Ferrari-logo.png"
+                                                            class="logo-parceira" alt="Logo Ferrari"></a></div>
+                        <div class="col-3 text-center"><a href="https://www.lamborghini.com/en-en#val-ht" target="_blank"><img src="~/IMG/Logo-Parcerias/Lamborghini-logo.png"
+                                                            class="logo-parceira" alt="Logo Lamborghini"></div></a>
+                        <div class="col-3 text-center"><a href="https://www.porsche.com/brazil/pt/" target="_blank"><img src="~/IMG/Logo-Parcerias/Porsche-logo.png"
+                                                            class="logo-parceira" alt="Logo Porsche"></a></div>
                     </div>
                 </div>
 
                 <div class="carousel-item">
                     <div class="row justify-content-center align-items-center">
-                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Aston-Martin-logo.png"
-                                                            class="logo-parceira" alt="Logo Aston Martin"></div>
-                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/McLaren-logo.png"
-                                                            class="logo-parceira" alt="Logo McLaren"></div>
-                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Bugatti-logo.png"
-                                                            class="logo-parceira" alt="Logo Bugatti"></div>
+                        <div class="col-3 text-center"><a href="https://www.astonmartin.com/en" target="_blank"><img src="~/IMG/Logo-Parcerias/Aston-Martin-logo.png"
+                                                            class="logo-parceira" alt="Logo Aston Martin"></a></div>
+                        <div class="col-3 text-center"><a href="https://cars.mclaren.com/br_pt" target="_blank"><img src="~/IMG/Logo-Parcerias/McLaren-logo.png"
+                                                            class="logo-parceira" alt="Logo McLaren"></a></div>
+                        <div class="col-3 text-center"><a href="https://www.bugatti.com/" target="_blank"><img src="~/IMG/Logo-Parcerias/Bugatti-logo.png"
+                                                            class="logo-parceira" alt="Logo Bugatti"></a></div>
                     </div>
                 </div>
 
                 <div class="carousel-item">
                     <div class="row justify-content-center align-items-center">
-                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Maserati-logo.png"
-                                                            class="logo-parceira" alt="Logo Maserati"></div>
-                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/Bentley-logo.png"
-                                                            class="logo-parceira" alt="Logo Bentley"></div>
-                        <div class="col-3 text-center"><img src="~/IMG/Logo-Parcerias/BMW-logo.png"
-                                                            class="logo-parceira" alt="Logo BMW"></div>
+                        <div class="col-3 text-center"><a href="https://www.maserati.com/br/pt" target="_blank"><img src="~/IMG/Logo-Parcerias/Maserati-logo.png"
+                                                            class="logo-parceira" alt="Logo Maserati"></a></div>
+                        <div class="col-3 text-center"><a href="https://www.bentleymotors.com/en.html" target="_blank"><img src="~/IMG/Logo-Parcerias/Bentley-logo.png"
+                                                            class="logo-parceira" alt="Logo Bentley"></a></div>
+                        <div class="col-3 text-center"><a href="https://www.bmw.com.br/pt/index.html" target="_blank"><img src="~/IMG/Logo-Parcerias/BMW-logo.png"
+                                                            class="logo-parceira" alt="Logo BMW"></a></div>
                     </div>
                 </div>
 

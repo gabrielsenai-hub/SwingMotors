@@ -36,6 +36,12 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Email()
+    {
+        TempData["ContatoSuccess"] = "Mensagem enviada com sucesso!";
+        return RedirectToAction("Index");
+    }
+
     public IActionResult Login()
     {
         if (User.Identity.IsAuthenticated)
