@@ -8,14 +8,12 @@ body {
 #config {
   width: 10vh;
   max-width: 65px;
-  transition: 0.5s;
+  transition: 1s;
   height: auto;
 }
 #config:hover {
-  transform: translateY(1px);
-  transform: scale(1.1);
-  transform: rotate(45deg);
-  transition: 0.5s;
+  transform: rotate(90deg);
+  transition: 1s;
 }
 .hero-section {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),

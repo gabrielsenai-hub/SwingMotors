@@ -17,7 +17,7 @@
                             <div class="col-lg-7 mb-4 mb-lg-0 border-end border-secondary">
                                 <h4 class="mb-4 text-primary">Envie sua Mensagem</h4>
                                 
-                                <form action="/enviar-mensagem" method="post">
+                                <form action="mailto:ogabriel292@gmail.com?subject=Mensagem de Contato" method="post" enctype="text/plain">
                                     
                                     @if (User.Identity.IsAuthenticated)
                                     {
@@ -45,12 +45,6 @@
                                     }
                                     
                                     
-                                    
-                                    <div class="mb-3">
-                                        <label for="inputAssunto" class="form-label">Assunto</label>
-                                        <input type="text" class="form-control" id="inputAssunto" name="Assunto" required>
-                                    </div>
-
                                     <div class="mb-4">
                                         <label for="textareaMensagem" class="form-label">Mensagem</label>
                                         <textarea class="form-control" id="textareaMensagem" name="Mensagem" rows="4" required></textarea>

@@ -59,10 +59,22 @@
                             </button>
                         </form>
                     }
+                    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+                    var action = ViewContext.RouteData.Values["action"]?.ToString();
+                    
+                    if(controller == "Usuario" && action == "Configuracoes"){
+                    <form asp-area="" asp-controller="Usuario" asp-action="Logout">
+                        <button class="btn btn-dark m-2" type="submit">Fazer Logout
+                        </button>
+                        
+                    </form>
 
+                    }
+                    else{
                     <a asp-action="Configuracoes" asp-controller="Usuario" class="img-fluid" id="config">
-                        <img src="~/IMG/settings-icon.png" alt="settings">
+                        <img src="~/IMG/settings-icone.png" alt="settings">
                     </a>
+                    }
                 }
 
             </div>

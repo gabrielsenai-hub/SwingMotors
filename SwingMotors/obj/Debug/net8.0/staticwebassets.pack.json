@@ -77,12 +77,8 @@
       "PackagePath": "staticwebassets\\IMG\\banner_text_centralizado_1920x600.png"
     },
     {
-      "Id": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\wwwroot\\IMG\\qrSwingMotors.png",
-      "PackagePath": "staticwebassets\\IMG\\qrSwingMotors.png"
-    },
-    {
-      "Id": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\wwwroot\\IMG\\settings-icon.png",
-      "PackagePath": "staticwebassets\\IMG\\settings-icon.png"
+      "Id": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\wwwroot\\IMG\\settings-icone.png",
+      "PackagePath": "staticwebassets\\IMG\\settings-icone.png"
     },
     {
       "Id": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\wwwroot\\css\\Animations.css",

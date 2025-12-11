@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4lfyiGFu+9klvI6wCy247wwIeybFej7uqN4Hz6vDurw=",
+  "Hash": "3CWHJBIKczdaqfT+Wq6zZq9QTpEYmreX0rzqTJt3C9s=",
   "Source": "AvaliacaoFinalWestn",
   "BasePath": "_content/AvaliacaoFinalWestn",
   "Mode": "Default",
@@ -1594,12 +1594,12 @@
       "OriginalItemSpec": "wwwroot\\IMG\\McLaren-540C.png"
     },
     {
-      "Identity": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\wwwroot\\IMG\\qrSwingMotors.png",
+      "Identity": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\wwwroot\\IMG\\settings-icone.png",
       "SourceId": "AvaliacaoFinalWestn",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\wwwroot\\",
       "BasePath": "_content/AvaliacaoFinalWestn",
-      "RelativePath": "IMG/qrSwingMotors.png",
+      "RelativePath": "IMG/settings-icone.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1610,26 +1610,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\IMG\\qrSwingMotors.png"
-    },
-    {
-      "Identity": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\wwwroot\\IMG\\settings-icon.png",
-      "SourceId": "AvaliacaoFinalWestn",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\wwwroot\\",
-      "BasePath": "_content/AvaliacaoFinalWestn",
-      "RelativePath": "IMG/settings-icon.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\IMG\\settings-icon.png"
+      "OriginalItemSpec": "wwwroot\\IMG\\settings-icone.png"
     },
     {
       "Identity": "C:\\Users\\ogabr\\OneDrive\\Documentos\\Languages\\TCDWestn\\SwingMotors\\wwwroot\\js\\site.js",

@@ -5,6 +5,10 @@
     var precoCarroStr = Model.Carro.Preco.ToString("F2", System.Globalization.CultureInfo.InvariantCulture);
 }
 <div class="container-sm p-lg-5 mt-4 pe-3 custom-bg border border-danger ">
+    <form asp-controller="Carro" asp-action="DetalhesVeiculo" method="post">
+    <input name="id" type="hidden" value="@Model.Carro.Id"/>
+    <button class="btn btn-primary" type="submit">Voltar</button>
+    </form>
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-9">
@@ -79,7 +83,7 @@
                                 <div id="detalhesCartao" style="display: none;"
                                     class="p-3 border rounded mb-4 bg-light">
                                     <p class="small text-muted mb-2">Detalhes do Cartão de Crédito:</p>
-                                    <input type="number" maxlength="16" minlength="16" class="form-control mb-2" placeholder="Número do Cartão"
+                                    <input type="number" maxlength="19" minlength="16" class="form-control mb-2" placeholder="Número do Cartão"
                                         >
                                     <input type="text" class="form-control mb-2" placeholder="Nome Impresso no Cartão"
                                         >
